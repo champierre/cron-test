@@ -15,6 +15,8 @@ jobs:
         run: wget -O "`date +%Y%m%d_%H%M%S`.json"  http://api.open-notify.org/iss-now.json
       - name: Commit downloaded file
         run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git add *.json > /dev/null 2>&1
           git commit -m "Deploy" > /dev/null 2>&1
           git push origin main
