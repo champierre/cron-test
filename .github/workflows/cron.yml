@@ -10,5 +10,5 @@ jobs:
   ubuntu:
     runs-on: ubuntu-latest
     steps:
-      - name: curl
-        run: curl http://api.open-notify.org/iss-now.json
+      - name: wget
+        run: wget -O "`date +%Y%m%d_%H%M%S`.json"  http://api.open-notify.org/iss-now.json
