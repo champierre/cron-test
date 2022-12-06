@@ -1,5 +1,10 @@
 name: Create address update issue
+
 on:
+  push:
+    branches:
+      - master
+
   schedule:
     - cron: 0,5,10,15,20,25,30,35,40,45,50,55 * * * *
 
@@ -10,11 +15,16 @@ jobs:
     permissions:
       issues: write
     steps:
+      - name: Set last month as env variable
+        env:
+          TZ: 'Asia/Tokyo'
+        run: echo "LAST_MONTH=$(date -d "$(date '+%Y%m01') 1 month ago" "+%Y年%m月")" >> $GITHUB_ENV
+
       - name: Create address update issue
         uses: imjohnbo/issue-bot@3daae12aa54d38685d7ff8459fc8a2aee8cea98b
         with:
           assignees: "champierre"
-          title: "国土地理協会 地名変更情報の住所を追加"
+          title: "国土地理協会 ${{ env.LAST_MONTH }}更新 地名変更情報の住所を追加"
           body: |
             # リクエストの種類(必須)
 
