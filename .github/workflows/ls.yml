@@ -1,0 +1,16 @@
+name: Get filename
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: ls
+        run: echo "XML_FILE=$(ls *.xml)" >> $GITHUB_ENV
+      - name: echo
+        run: echo ${{ env.XML_FILE }}
+
