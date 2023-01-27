@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: ls
-        run: echo "XML_FILE=$(ls data/*.xml)" >> $GITHUB_ENV
+        run: echo "XML_FILE=$(ls -1 data/*.xml)" >> $GITHUB_ENV
       - name: echo
         run: echo ${{ env.XML_FILE }}
 
