@@ -1,10 +1,10 @@
-name: Get ISS current location
+name: Backup jca_spots.csv
 on:
   push:
     branches:
       - 'main'
   schedule:
-    - cron: '45 0 1 1 *'
+    - cron: '0,10,20,30,40,50 * * * *'
 
 jobs:
   ubuntu:
@@ -12,7 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: wget
-        run: wget -O "`date +%Y%m%d_%H%M%S`.json"  http://api.open-notify.org/iss-now.json
+        run: wget -O "`date +%Y%m%d_%H%M%S`.csv" https://monumen.to/jca_spots.csv
+        working-directory: jca
       - name: Commit downloaded file
         run: |
           git config user.name "$GITHUB_ACTOR"
