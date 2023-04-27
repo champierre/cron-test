@@ -1,10 +1,10 @@
 name: Get ISS current location
 on:
-  push:
-    branches:
-      - 'main'
-  schedule:
-    - cron: '*/10 * * * *'
+  # push:
+  #   branches:
+  #     - 'main'
+  # schedule:
+  #   - cron: '*/10 * * * *'
 
 jobs:
   ubuntu:
